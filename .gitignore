@@ -1,0 +1,26 @@
+# Firebase service account
+backend_api/serviceAccountKey.json
+
+# Go build files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Flutter build & generated files
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+*.lock
+my_app/.metadata
+my_app/android/app/google-services.json
+my_app/pubspec.lock
+my_app/ios/Flutter/Flutter.podspec
+my_app/ios/Pods/
+my_app/ios/Runner.xcworkspace/
+my_app/windows/flutter/generated_plugin_registrant.*
+my_app/linux/flutter/generated_plugin_registrant.*
+my_app/macos/Flutter/GeneratedPluginRegistrant.swift
