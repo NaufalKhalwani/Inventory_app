@@ -10,6 +10,51 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func UpdateItem(c *gin.Context) {
+	id := c.Param("id")
+
+	var item model.Item
+	if err := c.ShouldBindJSON(&item); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	ctx := context.Background()
+
+	_, err := config.FirestoreClient.
+		Collection("items").
+		Doc(id).
+		Set(ctx, item)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Item updated successfully",
+	})
+}
+
+func DeleteItem(c *gin.Context) {
+	id := c.Param("id")
+	ctx := context.Background()
+
+	_, err := config.FirestoreClient.
+		Collection("items").
+		Doc(id).
+		Delete(ctx)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Item deleted successfully",
+	})
+}
+
 func GetItems(c *gin.Context) {
 	ctx := context.Background()
 
