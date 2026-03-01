@@ -11,6 +11,8 @@ func SetupRouter() *gin.Engine {
 
 	r.GET("/items", handlers.GetItems)
 	r.POST("/items", handlers.CreateItem)
+	r.PUT("/items/:id", handlers.UpdateItem)
+	r.DELETE("/items/:id", handlers.DeleteItem)
 
 	return r
 }
